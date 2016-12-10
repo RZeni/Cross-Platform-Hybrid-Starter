@@ -14,13 +14,17 @@ var sh = require('shelljs');
 
 var projectDir   = jetpack;
 var clientDir    = projectDir.cwd('./client');
-var cordovaDir     = projectDir.cwd('./cordova build');
-var cordovaClientDir     = projectDir.cwd('./cordova build/www');
-var electronDir      = projectDir.cwd('./electron build');
+var cordovaDir     = projectDir.cwd('./cordova-build');
+var cordovaClientDir     = projectDir.cwd('./cordova-build/www');
+var electronDir      = projectDir.cwd('./electron-build');
 var paths = {
   sass: ['./client/scss/**/*.scss']
 };
 
+
+///////////////
+// Sass Tasks
+///////////////
 gulp.task('sass', function(done) {
   gulp.src('./client/scss/ionic.app.scss')
     .pipe(sass())
@@ -38,6 +42,10 @@ gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
 });
 
+
+///////////////
+// Cordova Tasks
+///////////////
 gulp.task('clean-cordova', function () {
   return cordovaClientDir.dirAsync('.', { empty: true });
 });
@@ -61,7 +69,14 @@ gulp.task('copy-npm-cordova', ['copy-cordova'], function () {
 
 gulp.task('build-cordova', ['copy-npm-cordova']);
 
-gulp.task('copy-electron', function () {
+////////////
+// Electron Tasks
+////////////
+gulp.task('clean-electron', function () {
+  return electronDir.dirAsync('.', { empty: true });
+});
+
+gulp.task('copy-electron', ['clean-electron'], function () {
   return projectDir.copy(clientDir.path(), electronDir.path(), {
     overwrite: true, matching: [
       '*.*',
@@ -71,5 +86,6 @@ gulp.task('copy-electron', function () {
 });
 
 gulp.task('build-electron', ['copy-electron']);
+
 
 gulp.task('build-all', ['build-cordova', 'build-electron']);

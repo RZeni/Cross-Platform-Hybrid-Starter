@@ -5,11 +5,26 @@ Designed as a starter app for cross platform hybrid apps.
 
 -----
 ## Dependencies
-Java JDK
-Android SDK
+Development on windows
+
+Java JDK 
+
+Android SDK 
+
+Node
+
 Global Electron
+```
+npm install -g electron
+```
 Global Cordova
-Development on windows 
+```
+npm install -g cordova
+```
+To check for cordova requirements navigate to cordova build directory and execute:
+```
+cordova requirements
+```
 
 -----
 ## Download/Include
@@ -35,22 +50,22 @@ gulp build-all
 ```
 
 -----
-## Running App in Development
+## Running App
 Running in chrome
 ```
-npm start-web
+npm run web
 ```
 Running in cordova emulator
 ```
-gulp start-cordova
+npm run cordova
 ```
 Running on mobile device
 ```
-gulp start-cordova device
+npm run cordova-device
 ```
 Running App on desktop
 ```
-npm start-electron
+npm run electron
 ```
 
 -----

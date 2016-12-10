@@ -1,8 +1,14 @@
 {
-  "name": "GMFM",
-  "version": "1.0.0",
-  "description": "GMFM: CP Diagnostic Application",
+  "name": "Hybrid-Starter",
+  "version": "0.0.2",
+  "description": "Cross platform starter app",
   "main": "main.js",
+  "scripts": {
+    "cordova-dev": "cd ./client && cordova emulate android",
+    "cordova-prod": "gulp build-cordova && cd ./cordova-build && cordova emulate android",
+    "electron-dev": "electron --debug=5858 ./client",
+    "electron-prod": "gulp build-electron && electron ./electron-build"
+  },
   "dependencies": {},
   "devDependencies": {
     "asar": "^0.12.3",
